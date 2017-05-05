@@ -1,0 +1,47 @@
+﻿@model NewspaperKids.Models.ViewModels.Article.EditArticleViewModel
+@{
+    ViewBag.Title = "Redact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Редакция на статия</h2>
+
+@using (Html.BeginForm("ReturnForApproval", "Author", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(m => m.Id)
+    <div class="form-group">
+        @Html.LabelFor(m => m.Comment, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(m => m.Comment, new { @class = "form-control", @readonly=true, placeholder = "Моля въведете коментар" });
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Image, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+
+            @Html.TextBoxFor(model => model.Image, new { type = "file", @class = "form-control" })
+
+            @Html.ValidationMessageFor(m => m.Image)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.File, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.File, new { type = "file", @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.File)
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-3 col-md-3">
+            <input type="submit" class="btn btn-success" value="Върни за одобрение" />
+        </div>
+    </div>
+}
+<div class="form-group">
+    <div class="col-md-offset-3 col-md-3">
+        @Html.ActionLink("Назад", "GetArticlesForRedaction", "Author", new { area = "Author", @class = "btn btn-success" }, null)
+    </div>
+</div>
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}

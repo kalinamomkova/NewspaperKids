@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Connection String used in web.config by the application to access the database." defaultValue="Data Source=(LocalDb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\aspnet-NewspaperKids.Web-20170501082334.mdf;Initial Catalog=aspnet-NewspaperKids.Web-20170501082334;Integrated Security=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\SilentAngel\\documents\\visual\ studio\ 2015\\Projects\\NewspaperKids\\NewspaperKids\.Web\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+  <parameter name="NewspaperKids.Data.NewspaperKidsContext-Web.config Connection String" description="NewspaperKids.Data.NewspaperKidsContext Connection String used in web.config by the application to access the database." defaultValue="NewspaperKids.Data.NewspaperKidsContext_ConnectionString" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\SilentAngel\\documents\\visual\ studio\ 2015\\Projects\\NewspaperKids\\NewspaperKids\.Web\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='NewspaperKids.Data.NewspaperKidsContext']/@connectionString" />
+  </parameter>
+  <parameter name="NewspaperKids.Data.NewspaperKidsContext_DatabasePublish-Web.config Connection String" description="NewspaperKids.Data.NewspaperKidsContext_DatabasePublish Connection String used in web.config by the application to access the database." defaultValue="NewspaperKids.Data.NewspaperKidsContext_DatabasePublish.ConnetionString" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\SilentAngel\\documents\\visual\ studio\ 2015\\Projects\\NewspaperKids\\NewspaperKids\.Web\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='NewspaperKids.Data.NewspaperKidsContext_DatabasePublish']/@connectionString" />
+  </parameter>
+</parameters>

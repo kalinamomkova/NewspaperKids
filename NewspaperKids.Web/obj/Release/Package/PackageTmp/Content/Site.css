@@ -1,0 +1,89 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    background-image: url("https://photos-4.dropbox.com/t/2/AACw6RoTR6kygLMBbgOsN7bqeRrUiF7kfM2Kf2K9uPI_og/12/668580273/jpeg/32x32/1/_/1/2/heykids_v2.jpg/EOXG6boFGAUgAigC/0kaSFkM8NbVO07GM4BN8wgEp-I573t6UPA2yX96XpfM?size=32x32&size_mode=5");
+    -webkit-background-size:      cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;               
+    background-repeat:   no-repeat;
+    background-attachment: fixed;
+    background-position: center center ;
+    width: 100%;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/*#navbarMain {
+    margin: -2% 3% 4% 10%;
+    width: 71%;
+    position: relative;
+    float: right;
+}*/
+
+#innerContent {
+    float: right;
+    position: relative;
+    width: 60%;
+    text-align: center;
+    margin: 2% 5% 4% 10%;
+    background-color: rgba(255,241,221, 0.8);
+    border-style: solid;
+    border-radius: 25px;
+    border-width: 1px;
+}
+#articlePanel {
+    text-align: left;
+    margin-top: 2%;
+}
+#navbarMain {
+    margin-left: 4%;
+    width: 71%;
+    position: relative;
+    float: right;
+}
+
+#navContent {
+    padding-left: 0;
+    padding-right: 0;
+}
+#navContainer {
+    margin-left: -1%;
+    padding-left: 0;
+    padding-right: 0;
+    width: auto;
+}
+#navMenu {
+    margin-top: 5%;
+}
+#sideBar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 80%;
+}
+#footerContent {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 0;
+    text-align: right;
+}

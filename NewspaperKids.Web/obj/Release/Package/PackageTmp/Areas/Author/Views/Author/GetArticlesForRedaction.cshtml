@@ -1,0 +1,62 @@
+﻿@using NewspaperKids.Web.Helpers
+@using PagedList.Mvc
+@model PagedList.IPagedList<NewspaperKids.Models.ViewModels.Article.ArticleViewModel>
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "GetArticlesForRedaction";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="articlePanel" class="panel-group">
+    @if (Model.Count > 0)
+    {
+        foreach (var articleViewModel in Model)
+        {
+            <div class="panel panel-info">
+                <div class="panel-heading">
+
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            @Html.Image(articleViewModel.Image.Content, cssClasses: "img-responsive img-thumbnail")
+                        </div>
+                        <div class="col-sm-5">
+                            @Html.ActionLink(articleViewModel.Title, "GetArticle", "Article", new { area = "", id = articleViewModel.Id }, null)
+                            <br />
+                            @Html.Label("Автор: ")
+                            @Html.Label(articleViewModel.Author.FirstName)
+                            @Html.Label(articleViewModel.Author.LastName)
+                            @Html.Label(articleViewModel.Author.Age.ToString())
+                        </div>
+                        <div class="col-sm-3">
+                            @using (Html.BeginForm("Redact", "Author", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                            {
+                                <input hidden="hidden" value="@articleViewModel.Id" name="id" />
+                                <div class="form-group">
+                                    <div class="col-md-3">
+                                        <input type="submit" class="btn btn-success" value="Редактирай" />
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="comment"></div>
+        }
+    }
+    else
+    {
+        <div class="panel panel-info">
+            <div class="panel-heading">
+
+            </div>
+            <div class="panel-body">
+                "Нямате статии за редакция!"
+            </div>
+        </div>
+    }
+</div>
+@Html.PagedListPager(Model, page => Url.Action("GetArticlesForRedaction", new { ViewBag.Id, page }))
+

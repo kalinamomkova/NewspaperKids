@@ -1,0 +1,90 @@
+﻿@model NewspaperKids.Models.ViewModels.Article.AddArticleViewModel
+@{
+    ViewBag.Title = "Добавяне на статия";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Добавяне на статия</h2>
+
+@using (Html.BeginForm("AddArticle", "Author", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <hr />
+    @Html.HiddenFor(m=>m.AuthorId)
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.DropDownList("CategoryId", new SelectList(@Model.ParentCategories, "Id", "Name"), "--Избери категория--", new { @class = "btn btn-info dropdown-toggle", name= "CategoryId" })
+            @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+            @Html.DropDownList("SubCategory", Enumerable.Empty<SelectListItem>(), "--Избери подкатегория--", new { @class = "btn btn-info dropdown-toggle", name= "SubCategoryId" })
+            @Html.ValidationMessageFor(model => model.SubCategory, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m=>m.Title, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m=>m.Title)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Image, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+        
+            @Html.TextBoxFor(model => model.Image, new { type = "file", @class = "form-control"})
+          
+            @Html.ValidationMessageFor(m => m.Image)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.File, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.File, new { type = "file", @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.File)
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-4 col-md-3">
+            <input type="submit" class="btn btn-info" value="Добави" />
+        </div>
+    </div>
+}
+
+@section scripts{
+@Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+            $('#CategoryId').change(function () {
+                loadSubCategory(this.value);
+            });
+
+            function loadSubCategory(zoneCode) {
+
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("LoadSubCategoreis", "Author")',
+                    data: "{'parentCategoryId':'" + zoneCode + "'}",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: 'json',
+                    cache: false,
+                    success: function(data) {
+                        $('#SubCategory').get(0).options.length = 0;
+                        $('#SubCategory').get(0).options[0] = new Option("--Избери подкатегория--", "0");
+
+                        $.map(data,
+                            function(item) {
+                                $('#SubCategory').get(0).options[$('#SubCategory').get(0).options
+                                    .length] = new Option(item.Display, item.Value);
+                            });
+                    },
+                    error: function() {
+                        $('#SubCategory').get(0).options.length = 0;
+                        $('#SubCategory').get(0).options[0] = new Option("--Избери подкатегория--", "0");
+                    }
+                });
+            }
+
+        });
+
+    </script>
+}

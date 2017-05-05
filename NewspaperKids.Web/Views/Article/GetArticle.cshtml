@@ -1,0 +1,8 @@
+﻿@using NewspaperKids.Web.Helpers
+@model NewspaperKids.Models.ViewModels.Article.ArticleDetailsViewModel
+
+<div class="embed-responsive embed-responsive-4by3">
+    @Html.Pdf(Model.Content, "embed-responsive-item")
+</div>
+
+

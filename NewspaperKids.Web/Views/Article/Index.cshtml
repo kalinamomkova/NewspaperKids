@@ -1,0 +1,52 @@
+﻿@using NewspaperKids.Web.Helpers
+@using PagedList
+@model PagedList.IPagedList<NewspaperKids.Models.ViewModels.Article.ArticleViewModel>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        @ViewBag.Title
+    </div>
+</div>
+
+<div id="articlePanel" class="panel-group">
+    @if (Model.Count > 0)
+    {
+        foreach (var atiricle in Model)
+         {
+             <div class="panel panel-info">
+                 <div class="panel-heading">
+
+                 </div>
+                 <div class="panel-body">
+                     <div class="row">
+                         <div class="col-sm-4">
+                             @Html.Image(atiricle.Image.Content, cssClasses: "img-responsive img-thumbnail")
+                         </div>
+                         <div class="col-sm-8">
+                             @Html.ActionLink(atiricle.Title, "GetArticle", "Article", new { id = atiricle.Id }, null)
+                             <br/>
+                             @Html.Label("Автор: ")
+                             @Html.Label(atiricle.Author.FirstName)
+                             @Html.Label(atiricle.Author.LastName)
+                             @Html.Label(atiricle.Author.Age.ToString())
+                         </div>
+                     </div>
+                 </div>
+             </div>
+        }
+    }
+    else
+    {
+        <div class="panel panel-info">
+            <div class="panel-heading">
+
+            </div>
+            <div class="panel-body">
+                "В тази категория все още не са добавени статии!"
+            </div>
+        </div>
+    }
+</div>
+@Html.PagedListPager(Model, page => Url.Action("Index", new { ViewBag.Id, page }))

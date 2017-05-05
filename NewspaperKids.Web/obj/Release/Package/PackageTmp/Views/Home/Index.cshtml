@@ -1,0 +1,35 @@
+﻿@using NewspaperKids.Web.Helpers
+@model IEnumerable<NewspaperKids.Models.ViewModels.Article.ArticleViewModel>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        Последно добавени
+    </div>
+</div>
+
+@foreach (var atiricle in Model)
+{
+    <div class="panel panel-info">
+        <div class="panel-heading">
+
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-4">
+                    @Html.Image(atiricle.Image.Content, cssClasses: "img-responsive img-thumbnail")
+                </div>
+                <div class="col-sm-8">
+                    @Html.ActionLink(atiricle.Title, "GetArticle", "Article", new { id = atiricle.Id }, null)
+                    <br/>
+                    @Html.Label("Автор: ")
+                    @Html.Label(atiricle.Author.FirstName)
+                    @Html.Label(atiricle.Author.LastName)
+                    @Html.Label(atiricle.Author.Age.ToString())
+                </div>
+            </div>
+        </div>
+    </div>
+}
